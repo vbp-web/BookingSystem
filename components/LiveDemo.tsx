@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Calendar as CalendarIcon, MapPin, Star, User, CreditCard, ChevronRight, CheckCircle } from 'lucide-react';
+import { Calendar as CalendarIcon, MapPin, Star, User, CreditCard, ChevronRight, CheckCircle, ShieldCheck } from 'lucide-react';
 import { DEMO_SLOTS } from '../constants';
 import { TimeSlot } from '../types';
 
@@ -14,7 +14,7 @@ const LiveDemo: React.FC = () => {
       setTimeout(() => {
         setIsBooked(false);
         setSelectedSlot(null);
-      }, 3000);
+      }, 4000);
     }
   };
 
@@ -58,13 +58,15 @@ const LiveDemo: React.FC = () => {
       </div>
 
       {/* Booking Interface (Right) */}
-      <div className="lg:col-span-8 bg-slate-800/30 rounded-3xl p-4 md:p-8 border border-slate-700/50 shadow-2xl relative overflow-hidden">
+      <div className="lg:col-span-8 bg-slate-800/30 rounded-3xl p-4 md:p-8 border border-slate-700/50 shadow-2xl relative overflow-hidden min-h-[500px]">
         {isBooked && (
-          <div className="absolute inset-0 z-20 bg-emerald-500/90 backdrop-blur-sm flex flex-col items-center justify-center text-slate-950 animate-in fade-in zoom-in duration-300">
-            <CheckCircle className="w-20 h-20 mb-4" />
-            <h4 className="text-3xl font-black mb-2 uppercase italic tracking-tighter">Booking Confirmed!</h4>
-            <p className="font-medium">Slot: {selectedSlot?.time} | Price: ₹{selectedSlot?.price}</p>
-            <p className="mt-8 text-sm opacity-80">This demo simulates a successful booking flow.</p>
+          <div className="absolute inset-0 z-20 bg-slate-900/95 backdrop-blur-md flex flex-col items-center justify-center text-center p-6 animate-slide-up">
+            <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(16,185,129,0.4)]">
+              <CheckCircle className="w-12 h-12 text-slate-950" />
+            </div>
+            <h4 className="text-4xl font-black mb-2 uppercase italic tracking-tighter text-emerald-400">Booking Confirmed!</h4>
+            <p className="text-xl text-white font-medium mb-2">Slot: {selectedSlot?.time}</p>
+            <p className="text-slate-400 max-w-sm">A confirmation SMS and Email have been sent to the user. This simulation resets in 4 seconds.</p>
           </div>
         )}
 
@@ -73,9 +75,9 @@ const LiveDemo: React.FC = () => {
             <h4 className="text-xl font-bold mb-1">Select Your Slot</h4>
             <p className="text-slate-400 text-sm">Today, 24th Oct 2023</p>
           </div>
-          <div className="flex gap-2">
-            <button className="px-4 py-2 bg-emerald-500 text-slate-950 rounded-xl text-sm font-bold">Today</button>
-            <button className="px-4 py-2 bg-slate-700 text-slate-300 rounded-xl text-sm font-medium hover:bg-slate-600">Tomorrow</button>
+          <div className="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+            <button className="whitespace-nowrap px-4 py-2 bg-emerald-500 text-slate-950 rounded-xl text-sm font-bold">Today</button>
+            <button className="whitespace-nowrap px-4 py-2 bg-slate-700 text-slate-300 rounded-xl text-sm font-medium hover:bg-slate-600">Tomorrow</button>
             <button className="p-2 bg-slate-700 text-slate-300 rounded-xl hover:bg-slate-600">
               <CalendarIcon className="w-5 h-5" />
             </button>
@@ -109,7 +111,7 @@ const LiveDemo: React.FC = () => {
         </div>
 
         {/* Summary & Payment */}
-        <div className="bg-slate-950/50 rounded-2xl p-6 border border-slate-700">
+        <div className="bg-slate-950/50 rounded-2xl p-6 border border-slate-700 mt-auto">
           <div className="flex flex-col md:flex-row gap-6 items-center">
             <div className="flex-1 space-y-2 text-center md:text-left">
               <p className="text-slate-400 text-sm">Selected Slot</p>
@@ -146,10 +148,5 @@ const LiveDemo: React.FC = () => {
     </div>
   );
 };
-
-// Simple Icon component to fix missing imports in constants
-const ShieldCheck = ({ className }: { className?: string }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
-);
 
 export default LiveDemo;

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LiveDemo from './components/LiveDemo';
@@ -9,10 +9,9 @@ import ProcessSteps from './components/ProcessSteps';
 import WhyChooseUs from './components/WhyChooseUs';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
+import AIAssistant from './components/AIAssistant';
 
 const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('demo');
-
   return (
     <div className="min-h-screen bg-slate-950">
       <Navbar />
@@ -58,6 +57,7 @@ const App: React.FC = () => {
       </main>
 
       <Footer />
+      <AIAssistant />
     </div>
   );
 };
